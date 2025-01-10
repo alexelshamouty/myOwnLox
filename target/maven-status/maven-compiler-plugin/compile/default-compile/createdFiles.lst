@@ -1,0 +1,4 @@
+org/craftinginterpreters/lox/MyOwnLox.class
+org/craftinginterpreters/lox/Token.class
+org/craftinginterpreters/lox/TokenType.class
+org/craftinginterpreters/lox/Scanner.class
