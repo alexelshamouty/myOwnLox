@@ -1,4 +1,10 @@
 org/craftinginterpreters/lox/MyOwnLox.class
+org/craftinginterpreters/lox/Expr$Unary.class
+org/craftinginterpreters/lox/Expr$Literal.class
 org/craftinginterpreters/lox/Token.class
 org/craftinginterpreters/lox/TokenType.class
+org/craftinginterpreters/tool/GenerateAst.class
 org/craftinginterpreters/lox/Scanner.class
+org/craftinginterpreters/lox/Expr$Grouping.class
+org/craftinginterpreters/lox/Expr$Binary.class
+org/craftinginterpreters/lox/Expr.class
