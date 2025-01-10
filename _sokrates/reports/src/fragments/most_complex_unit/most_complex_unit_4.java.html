@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>private void number()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">private void number()</h3>
+<p style="margin-top: 4px">in <i>src/main/java/org/craftinginterpreters/lox/Scanner.java [188:200]</i></p>
+<ul>
+    <li><b>8</b> lines of code</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="java">
+    private void number(){
+        //If the next letter is a digit, increase counter
+        // we don't care about the return value of the function as we will substring it
+        while(isDigit(peek())) advance();
+
+        //We need to deal with fractions
+        if(peek() == '.' &amp;&amp; isDigit(peekNext())){
+            advance();
+            while(isDigit(peek())) advance();
+        }
+
+        addToken(NUMBER, Double.parseDouble(source.substring(start,current)));
+    }
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

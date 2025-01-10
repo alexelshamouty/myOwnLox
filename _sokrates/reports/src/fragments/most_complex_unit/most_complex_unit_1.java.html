@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>private void scanToken()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">private void scanToken()</h3>
+<p style="margin-top: 4px">in <i>src/main/java/org/craftinginterpreters/lox/Scanner.java [90:150]</i></p>
+<ul>
+    <li><b>55</b> lines of code</li>
+    <li><b>28</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="java">
+    private void scanToken(){
+        char c = advance();
+
+        switch(c){
+            case '(': addToken(LEFT_PAREN); break;
+            case ')': addToken(RIGHT_PAREN); break;
+            case '{': addToken(LEFT_BRACE); break;
+            case '}': addToken(RIGHT_BRACE); break;
+            case ',': addToken(COMMA); break;
+            case '.': addToken(DOT); break;
+            case '-': addToken(MINUS); break;
+            case '+': addToken(PLUS); break;
+            case ';': addToken(SEMICOLON); break;
+            case '*': addToken(STAR); break;
+
+            case '!':
+                addToken(match('=') ? BANG_EQUAL : BANG);
+                break;
+            case '=':
+                addToken(match('=')? EQUAL_EQUAL: EQUAL);
+                break;
+            case '&lt;':
+                addToken(match('=')? LESS_EQUAL: EQUAL);
+                break;
+            case '&gt;':
+                addToken(match('=')? GREATER_EQUAL: EQUAL);
+                break;
+            case '&quot;':
+                string();
+                break;
+            case '/':
+                if(match('/')){
+                    //basically ignore all whitespaces
+                    while (peek() != '\n' &amp;&amp; !isAtEnd()) advance(); 
+                } else if(peek() == '*'){
+                    // case of dealing with cstyle comment
+                    cstylecomment();
+                } else {
+                    //tihs is just division
+                    addToken(SLASH);
+                }
+                break;
+
+            case ' ':
+            case '\r':
+            case '\t':
+                break;
+            case '\n':
+                line++;
+                break;
+            default:
+                if(isDigit(c)){
+                    number();
+                } else if(isAlpha(c)){
+                    identifier();
+                }else{
+                    MyOwnLox.error(line, &quot;Unexpected Character&quot;);
+                }
+                break;
+        }
+    }
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

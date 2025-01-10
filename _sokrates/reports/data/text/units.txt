@@ -1,0 +1,225 @@
+id: 1
+unit: private void scanToken()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 90
+end line: 150
+size: 55 LOC
+McCabe index: 28
+number of parameters: 0
+
+id: 2
+unit: static
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 55
+end line: 73
+size: 19 LOC
+McCabe index: 1
+number of parameters: 0
+
+id: 3
+unit: public static void main()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 22
+end line: 39
+size: 17 LOC
+McCabe index: 5
+number of parameters: 1
+
+id: 4
+unit: private void cstylecomment()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 152
+end line: 167
+size: 14 LOC
+McCabe index: 6
+number of parameters: 0
+
+id: 5
+unit: private static void runPrompt()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 49
+end line: 62
+size: 14 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 6
+unit: private void string()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 206
+end line: 226
+size: 12 LOC
+McCabe index: 5
+number of parameters: 0
+
+id: 7
+unit: List scanTokens()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 77
+end line: 84
+size: 8 LOC
+McCabe index: 2
+number of parameters: 0
+
+id: 8
+unit: private void number()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 188
+end line: 200
+size: 8 LOC
+McCabe index: 5
+number of parameters: 0
+
+id: 9
+unit: private void identifier()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 168
+end line: 174
+size: 7 LOC
+McCabe index: 3
+number of parameters: 0
+
+id: 10
+unit: private static void runFile()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 41
+end line: 47
+size: 7 LOC
+McCabe index: 2
+number of parameters: 1
+
+id: 11
+unit: private static void run()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 64
+end line: 71
+size: 7 LOC
+McCabe index: 2
+number of parameters: 1
+
+id: 12
+unit: private boolean match()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 232
+end line: 237
+size: 6 LOC
+McCabe index: 3
+number of parameters: 1
+
+id: 13
+unit: private boolean isAlpha()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 179
+end line: 183
+size: 5 LOC
+McCabe index: 5
+number of parameters: 1
+
+id: 14
+unit: private char peekNext()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 202
+end line: 205
+size: 4 LOC
+McCabe index: 2
+number of parameters: 0
+
+id: 15
+unit: private char peek()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 227
+end line: 230
+size: 4 LOC
+McCabe index: 2
+number of parameters: 0
+
+id: 16
+unit: private void addToken()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 248
+end line: 251
+size: 4 LOC
+McCabe index: 1
+number of parameters: 2
+
+id: 17
+unit: private static void report()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 77
+end line: 80
+size: 4 LOC
+McCabe index: 1
+number of parameters: 3
+
+id: 18
+unit: public Scanner()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 74
+end line: 76
+size: 3 LOC
+McCabe index: 1
+number of parameters: 1
+
+id: 19
+unit: private boolean isAtEnd()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 86
+end line: 88
+size: 3 LOC
+McCabe index: 1
+number of parameters: 0
+
+id: 20
+unit: private boolean isAlphaNumeric()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 175
+end line: 177
+size: 3 LOC
+McCabe index: 2
+number of parameters: 1
+
+id: 21
+unit: private boolean isDigit()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 184
+end line: 186
+size: 3 LOC
+McCabe index: 2
+number of parameters: 1
+
+id: 22
+unit: private char advance()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 239
+end line: 242
+size: 3 LOC
+McCabe index: 1
+number of parameters: 0
+
+id: 23
+unit: private void addToken()
+file: src/main/java/org/craftinginterpreters/lox/Scanner.java
+start line: 244
+end line: 246
+size: 3 LOC
+McCabe index: 1
+number of parameters: 1
+
+id: 24
+unit: static void error()
+file: src/main/java/org/craftinginterpreters/lox/MyOwnLox.java
+start line: 73
+end line: 75
+size: 3 LOC
+McCabe index: 1
+number of parameters: 2
+
+id: 25
+unit: public String toString()
+file: src/main/java/org/craftinginterpreters/lox/Token.java
+start line: 16
+end line: 18
+size: 3 LOC
+McCabe index: 1
+number of parameters: 0
+

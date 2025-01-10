@@ -1,0 +1,5 @@
+path	# lines of code
+src/main/java/org/craftinginterpreters/lox/TokenType.java	11	
+src/main/java/org/craftinginterpreters/lox/Scanner.java	214	
+src/main/java/org/craftinginterpreters/lox/MyOwnLox.java	63	
+src/main/java/org/craftinginterpreters/lox/Token.java	16	

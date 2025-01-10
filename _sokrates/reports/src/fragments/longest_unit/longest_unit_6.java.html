@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>private void string()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">private void string()</h3>
+<p style="margin-top: 4px">in <i>src/main/java/org/craftinginterpreters/lox/Scanner.java [206:226]</i></p>
+<ul>
+    <li><b>12</b> lines of code</li>
+    <li><b>5</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="java">
+    private void string(){
+        //Let's imagine an empty string first like &quot;&quot; where start is 0 and current is 0. When we peak, we look at current and if it's &quot; then we basically end the while loop
+        // We also know that current &gt;= length. Length is two and current is 0 in this case.. so we know for sure we have one more to go
+        // now we check if we are at the end, which we aren't
+        // Now we advance to 1
+        // Substring now is going to be between 1 and 0 which is what? I don't know :D 
+
+        while(peek() != '&quot;' &amp;&amp; !isAtEnd()){
+            if(peek() == '\n') line++;
+            advance();
+        }
+
+        if(isAtEnd()){
+            MyOwnLox.error(line, &quot;Unterminated string.&quot;);
+        }
+
+        advance();
+        //Just returning the string without the quotes
+        String value = source.substring(start+1, current-1);
+        addToken(STRING, value);
+    }
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

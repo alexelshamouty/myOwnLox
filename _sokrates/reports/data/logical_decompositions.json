@@ -1,0 +1,69 @@
+[ {
+  "key" : "primary",
+  "components" : [ {
+    "name" : "src",
+    "filesCount" : 4,
+    "linesOfCode" : 304,
+    "numberOfRegexLineMatches" : 0,
+    "fileCountPerExtension" : [ {
+      "name" : "  *.java",
+      "value" : 4,
+      "description" : [ ]
+    } ],
+    "linesOfCodePerExtension" : [ {
+      "name" : "  *.java",
+      "value" : 304,
+      "description" : [ ]
+    } ]
+  } ],
+  "componentDependencies" : [ ],
+  "componentDependenciesErrors" : [ ],
+  "logicalDecomposition" : {
+    "name" : "primary",
+    "scope" : "main",
+    "filters" : [ ],
+    "componentsFolderDepth" : 1,
+    "minComponentsCount" : 0,
+    "components" : [ {
+      "name" : "src",
+      "sourceFileFilters" : [ {
+        "pathPattern" : "./src/.*",
+        "contentPattern" : "",
+        "exception" : false,
+        "note" : ""
+      } ],
+      "files" : [ ]
+    } ],
+    "metaComponents" : [ ],
+    "groups" : [ ],
+    "includeRemainingFiles" : true,
+    "dependenciesFinder" : {
+      "useBuiltInDependencyFinders" : true,
+      "rules" : [ ],
+      "metaRules" : [ ]
+    },
+    "renderingOptions" : {
+      "orientation" : "TB",
+      "maxNumberOfDependencies" : 100,
+      "renderComponentsWithoutDependencies" : true,
+      "renderIndirectDependencies" : false,
+      "renderInternalIndirectDependencies" : false,
+      "reverseDirection" : false
+    },
+    "includeExternalComponents" : true,
+    "dependencyLinkThreshold" : 1,
+    "duplicationLinkThreshold" : 50,
+    "temporalLinkThreshold" : 1,
+    "maxSearchDepthLines" : 200
+  },
+  "fileCountPerComponent" : [ {
+    "name" : "src",
+    "value" : 4,
+    "description" : [ ]
+  } ],
+  "linesOfCodePerComponent" : [ {
+    "name" : "src",
+    "value" : 304,
+    "description" : [ ]
+  } ]
+} ]

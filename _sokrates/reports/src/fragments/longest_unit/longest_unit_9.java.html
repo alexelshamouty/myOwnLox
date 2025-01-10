@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>private void identifier()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">private void identifier()</h3>
+<p style="margin-top: 4px">in <i>src/main/java/org/craftinginterpreters/lox/Scanner.java [168:174]</i></p>
+<ul>
+    <li><b>7</b> lines of code</li>
+    <li><b>3</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="java">
+    private void identifier(){
+        while(isAlphaNumeric(peek())) advance(); //is it a digit, number or an underscore.. jesus we can just use regular expressions :D
+        String text = source.substring(start, current);//Just get what we collected.
+        TokenType type = keywords.get(text); //Let's get the type from the static reserves words map we created
+        if(type == null) type = IDENTIFIER; //maybe it's a varibale name or whatever
+        addToken(type);
+    }
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

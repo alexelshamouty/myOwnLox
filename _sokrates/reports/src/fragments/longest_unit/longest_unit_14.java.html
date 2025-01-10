@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>private char peekNext()</title>
+    <link rel="stylesheet" charset="UTF-8" href="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/styles/docco.min.css">
+    <script charset="UTF-8" type="application/javascript" src="https://d2bb1mtyn3kglb.cloudfront.net/lib/highlight/highlight.min.js"></script>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">private char peekNext()</h3>
+<p style="margin-top: 4px">in <i>src/main/java/org/craftinginterpreters/lox/Scanner.java [202:205]</i></p>
+<ul>
+    <li><b>4</b> lines of code</li>
+    <li><b>2</b> McCabe index (conditional complexity)</li>
+</ul>
+<pre>
+<code class="java">
+    private char peekNext(){
+        if(current + 1 &gt;= source.length()) return '\0';
+        return source.charAt(current+1);
+    }
+
+</code>
+</pre>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>

@@ -1,0 +1,1 @@
+[ "src/main/java/org/craftinginterpreters/lox/TokenType.java", "src/main/java/org/craftinginterpreters/lox/Scanner.java", "src/main/java/org/craftinginterpreters/lox/MyOwnLox.java", "src/main/java/org/craftinginterpreters/lox/Token.java" ]

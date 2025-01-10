@@ -1,0 +1,278 @@
+<html>
+<head>
+    <title>src/main/java/org/craftinginterpreters/lox/Scanner.java</title>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 40px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif">
+<h3 style="margin-bottom: 0">src/main/java/org/craftinginterpreters/lox/Scanner.java (<b>214</b> lines of code) (<a href="Scanner.java">raw</a>):</h3>
+<div id="editor">package org.craftinginterpreters.lox;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.craftinginterpreters.lox.TokenType.AND;
+import static org.craftinginterpreters.lox.TokenType.BANG;
+import static org.craftinginterpreters.lox.TokenType.BANG_EQUAL;
+import static org.craftinginterpreters.lox.TokenType.CLASS;
+import static org.craftinginterpreters.lox.TokenType.COMMA;
+import static org.craftinginterpreters.lox.TokenType.DOT;
+import static org.craftinginterpreters.lox.TokenType.ELSE;
+import static org.craftinginterpreters.lox.TokenType.EOF;
+import static org.craftinginterpreters.lox.TokenType.EQUAL;
+import static org.craftinginterpreters.lox.TokenType.EQUAL_EQUAL;
+import static org.craftinginterpreters.lox.TokenType.FALSE;
+import static org.craftinginterpreters.lox.TokenType.FOR;
+import static org.craftinginterpreters.lox.TokenType.FUN;
+import static org.craftinginterpreters.lox.TokenType.GREATER_EQUAL;
+import static org.craftinginterpreters.lox.TokenType.IDENTIFIER;
+import static org.craftinginterpreters.lox.TokenType.IF;
+import static org.craftinginterpreters.lox.TokenType.LEFT_BRACE;
+import static org.craftinginterpreters.lox.TokenType.LEFT_PAREN;
+import static org.craftinginterpreters.lox.TokenType.LESS_EQUAL;
+import static org.craftinginterpreters.lox.TokenType.MINUS;
+import static org.craftinginterpreters.lox.TokenType.NIL;
+import static org.craftinginterpreters.lox.TokenType.NUMBER;
+import static org.craftinginterpreters.lox.TokenType.OR;
+import static org.craftinginterpreters.lox.TokenType.PLUS;
+import static org.craftinginterpreters.lox.TokenType.PRINT;
+import static org.craftinginterpreters.lox.TokenType.RETURN;
+import static org.craftinginterpreters.lox.TokenType.RIGHT_BRACE;
+import static org.craftinginterpreters.lox.TokenType.RIGHT_PAREN;
+import static org.craftinginterpreters.lox.TokenType.SEMICOLON;
+import static org.craftinginterpreters.lox.TokenType.SLASH;
+import static org.craftinginterpreters.lox.TokenType.STAR;
+import static org.craftinginterpreters.lox.TokenType.STRING;
+import static org.craftinginterpreters.lox.TokenType.SUPER;
+import static org.craftinginterpreters.lox.TokenType.THIS;
+import static org.craftinginterpreters.lox.TokenType.TRUE;
+import static org.craftinginterpreters.lox.TokenType.VAR;
+import static org.craftinginterpreters.lox.TokenType.WHILE;
+
+class Scanner{
+    private final String source;
+    private final List&lt;Token&gt; tokens = new ArrayList&lt;&gt;();
+
+    private int start = 0;
+    private int current = 0 ;
+    private int line = 0;
+    private static final Map&lt;String, TokenType&gt; keywords;
+
+    static{
+        keywords = new HashMap&lt;&gt;();
+        keywords.put(&quot;and&quot;, AND);
+        keywords.put(&quot;class&quot;, CLASS);
+        keywords.put(&quot;else&quot;, ELSE);
+        keywords.put(&quot;false&quot;, FALSE);
+        keywords.put(&quot;fun&quot;, FUN);
+        keywords.put(&quot;for&quot;, FOR);
+        keywords.put(&quot;if&quot;, IF);
+        keywords.put(&quot;nil&quot;, NIL);
+        keywords.put(&quot;or&quot;, OR);
+        keywords.put(&quot;print&quot;, PRINT);
+        keywords.put(&quot;return&quot;, RETURN);
+        keywords.put(&quot;super&quot;, SUPER);
+        keywords.put(&quot;this&quot;, THIS);
+        keywords.put(&quot;true&quot;, TRUE);
+        keywords.put(&quot;var&quot;, VAR);
+        keywords.put(&quot;while&quot;, WHILE);
+    }
+    public Scanner(String source) {
+        this.source = source;
+    }
+    List&lt;Token&gt; scanTokens(){
+        while(!isAtEnd()){
+            start = current;
+            scanToken();
+        }
+        this.tokens.add(new Token(EOF, &quot;&quot;, null, line));
+        return tokens;
+    }
+
+    private boolean isAtEnd(){
+        return current &gt;= source.length();
+    }
+
+    private void scanToken(){
+        char c = advance();
+
+        switch(c){
+            case '(': addToken(LEFT_PAREN); break;
+            case ')': addToken(RIGHT_PAREN); break;
+            case '{': addToken(LEFT_BRACE); break;
+            case '}': addToken(RIGHT_BRACE); break;
+            case ',': addToken(COMMA); break;
+            case '.': addToken(DOT); break;
+            case '-': addToken(MINUS); break;
+            case '+': addToken(PLUS); break;
+            case ';': addToken(SEMICOLON); break;
+            case '*': addToken(STAR); break;
+
+            case '!':
+                addToken(match('=') ? BANG_EQUAL : BANG);
+                break;
+            case '=':
+                addToken(match('=')? EQUAL_EQUAL: EQUAL);
+                break;
+            case '&lt;':
+                addToken(match('=')? LESS_EQUAL: EQUAL);
+                break;
+            case '&gt;':
+                addToken(match('=')? GREATER_EQUAL: EQUAL);
+                break;
+            case '&quot;':
+                string();
+                break;
+            case '/':
+                if(match('/')){
+                    //basically ignore all whitespaces
+                    while (peek() != '\n' &amp;&amp; !isAtEnd()) advance(); 
+                } else if(peek() == '*'){
+                    // case of dealing with cstyle comment
+                    cstylecomment();
+                } else {
+                    //tihs is just division
+                    addToken(SLASH);
+                }
+                break;
+
+            case ' ':
+            case '\r':
+            case '\t':
+                break;
+            case '\n':
+                line++;
+                break;
+            default:
+                if(isDigit(c)){
+                    number();
+                } else if(isAlpha(c)){
+                    identifier();
+                }else{
+                    MyOwnLox.error(line, &quot;Unexpected Character&quot;);
+                }
+                break;
+        }
+    }
+
+    private void cstylecomment(){
+        //if it's not at the end and it's not */ then we keep advancing anc counting lines
+        advance();
+        while(peekNext() != '/' &amp;&amp; !isAtEnd()){
+            if(peek() == '\n'){
+                line++;
+            }
+            advance();
+            //look ahead two letter
+            if(peek() == '*' &amp;&amp; peekNext() == '/'){
+                advance();
+                advance();
+                break;
+            }
+        }
+    }
+    private void identifier(){
+        while(isAlphaNumeric(peek())) advance(); //is it a digit, number or an underscore.. jesus we can just use regular expressions :D
+        String text = source.substring(start, current);//Just get what we collected.
+        TokenType type = keywords.get(text); //Let's get the type from the static reserves words map we created
+        if(type == null) type = IDENTIFIER; //maybe it's a varibale name or whatever
+        addToken(type);
+    }
+    private boolean isAlphaNumeric(char c){
+        return isAlpha(c) || isDigit(c);
+    }
+
+    private boolean isAlpha(char c){
+        return (
+            (c &gt;= 'a' &amp;&amp; c &lt;= 'z') ||
+            (c &gt;= 'A' &amp;&amp; c &lt;= 'Z') ) ||  c == '_';
+    }
+    private boolean isDigit(char c){
+        return c &gt;= '0' &amp;&amp; c &lt;= '9'; 
+    }
+
+    private void number(){
+        //If the next letter is a digit, increase counter
+        // we don't care about the return value of the function as we will substring it
+        while(isDigit(peek())) advance();
+
+        //We need to deal with fractions
+        if(peek() == '.' &amp;&amp; isDigit(peekNext())){
+            advance();
+            while(isDigit(peek())) advance();
+        }
+
+        addToken(NUMBER, Double.parseDouble(source.substring(start,current)));
+    }
+
+    private char peekNext(){
+        if(current + 1 &gt;= source.length()) return '\0';
+        return source.charAt(current+1);
+    }
+    private void string(){
+        //Let's imagine an empty string first like &quot;&quot; where start is 0 and current is 0. When we peak, we look at current and if it's &quot; then we basically end the while loop
+        // We also know that current &gt;= length. Length is two and current is 0 in this case.. so we know for sure we have one more to go
+        // now we check if we are at the end, which we aren't
+        // Now we advance to 1
+        // Substring now is going to be between 1 and 0 which is what? I don't know :D 
+
+        while(peek() != '&quot;' &amp;&amp; !isAtEnd()){
+            if(peek() == '\n') line++;
+            advance();
+        }
+
+        if(isAtEnd()){
+            MyOwnLox.error(line, &quot;Unterminated string.&quot;);
+        }
+
+        advance();
+        //Just returning the string without the quotes
+        String value = source.substring(start+1, current-1);
+        addToken(STRING, value);
+    }
+    private char peek(){
+        if(isAtEnd()) return '\0';
+        return source.charAt(current); //advance will take care of the incrementing
+    }
+
+    private boolean match(char expected){
+        if(isAtEnd()) return false;
+        if(source.charAt(current) != expected) return false;
+        current++;
+        return true;
+    }
+
+    private char advance(){
+        // It returns the current and then advances.
+        return source.charAt(current++);
+    }
+
+    private void addToken(TokenType type){
+        addToken(type, null);
+    }
+
+    private void addToken(TokenType type, Object literal){
+        String text = source.substring(start, current);
+        tokens.add(new Token(type, text, literal, line));
+    }
+}
+</div>
+<script src="https://www.zeljkoobrenovic.com/tools/common/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/java");
+    editor.setTheme("ace/theme/xcode");
+    editor.setReadOnly(true);
+    editor.setOption("wrap", true);
+    editor.setPrintMarginColumn(120);
+</script>
+</body>

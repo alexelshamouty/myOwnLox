@@ -1,0 +1,29 @@
+[ {
+  "relativePath" : "src/main/java/org/craftinginterpreters/lox/TokenType.java",
+  "extension" : "java",
+  "linesOfCode" : 11,
+  "unitsCount" : 0,
+  "unitsMcCabeIndexSum" : 0,
+  "linesOfCodeInUnits" : 0
+}, {
+  "relativePath" : "src/main/java/org/craftinginterpreters/lox/Scanner.java",
+  "extension" : "java",
+  "linesOfCode" : 214,
+  "unitsCount" : 18,
+  "unitsMcCabeIndexSum" : 71,
+  "linesOfCodeInUnits" : 164
+}, {
+  "relativePath" : "src/main/java/org/craftinginterpreters/lox/MyOwnLox.java",
+  "extension" : "java",
+  "linesOfCode" : 63,
+  "unitsCount" : 6,
+  "unitsMcCabeIndexSum" : 14,
+  "linesOfCodeInUnits" : 52
+}, {
+  "relativePath" : "src/main/java/org/craftinginterpreters/lox/Token.java",
+  "extension" : "java",
+  "linesOfCode" : 16,
+  "unitsCount" : 1,
+  "unitsMcCabeIndexSum" : 1,
+  "linesOfCodeInUnits" : 3
+} ]

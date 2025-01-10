@@ -1,0 +1,36 @@
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*.class files (4):
+
+target/classes/org/craftinginterpreters/lox/Scanner.class
+target/classes/org/craftinginterpreters/lox/Token.class
+target/classes/org/craftinginterpreters/lox/TokenType.class
+target/classes/org/craftinginterpreters/lox/MyOwnLox.class
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*.lst files (2):
+
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*.txt files (1):
+
+git-history.txt
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*.lox files (1):
+
+source.lox
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+
